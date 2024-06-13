@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>API TEST</title>
+
+	<style>
+	
+	body {
+		background-color: rgba(202, 230, 230, 0.885);
+		margin-top: 100px;
+		text-align: center;
+	
+	}
+	
+	input {
+		border-radius: 5px;
+		border-color: transparent;
+		width: 180px;
+		height: 22px;
+	}
+
+	button {
+		height: 30px;
+		border-radius: 10px;
+		background-color: rgb(126, 207, 205);
+		border-color: transparent;
+		margin-left: 6px;
+	}
+
+	#gifs {
+		width: 300px;
+		height: 300px;
+		border-radius: 10px;
+		margin-top: 20px;
+	
+	}
+
+	</style>
+</head>
+<body>
+	
+	<div id="field">
+	<input type="text" id="input">
+	<button id="btn" ">Search</button>
+	</div>
+	<img src="" alt="" id="gifs">
+	
+	<script>
+
+		const field = document.getElementById("input")
+		
+		const img = document.querySelector('img')
+		
+		document.querySelector("button").addEventListener("click", function() {
+		fetch(`https://api.giphy.com/v1/gifs/translate?api_key=${}=${field.value}`, {mode: 'cors'})
+			.then(function(response) {
+				return response.json()
+			})	
+			.then(function(response) {
+				img.src = response.data.images.original.url
+			}) 
+		})
+	</script>
+</body>
+</html>
